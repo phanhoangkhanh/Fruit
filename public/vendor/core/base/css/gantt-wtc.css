@@ -1,0 +1,209 @@
+.grantt-chart{
+    position: relative;
+    font-family: var(--font-family);
+}
+.grantt-chart--left{position: relative;}
+.grantt-chart--left__header{
+    height: 36px;
+    padding: 0 10px;
+    font-size: 11px;
+    line-height: 36px;
+    align-items: center;
+    position: sticky;
+    top: 70px;
+    background-color: white;
+    z-index: 300;
+    font-weight: 700;
+    color: #545454;
+    text-transform: uppercase;
+    border: 1px solid #e4e4e4;
+}
+.grantt-chart--left__header--dropdown-menu{
+
+text-transform: initial;
+}
+
+.grantt-chart--left__header--dropdown-menu span{
+
+font-size: 12px;
+opacity: 0.8;
+font-weight: bold;
+}
+.grantt-chart--left__header--dropdown-menu span:hover{
+    opacity: 1;
+}
+.grantt-chart--left__header--menu{
+
+}
+.grantt-chart--left__header--menu label{}
+.grantt-chart--left__body{
+
+border-right: 1px solid #e4e4e4;
+
+border-left: 1px solid #e4e4e4;
+}
+.grantt-chart--left__body--header__name{
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    height: 36px;
+    padding: 0 10px;
+    font-size: 11px;
+    color: #545454;
+    text-transform: uppercase;
+}
+.hidden{
+    display: none;
+}
+
+.grantt-chart--left__body--body__name{
+    overflow: hidden;
+    /* text-overflow: ellipsis; */
+    white-space: nowrap;
+    padding: 10px;
+    flex-shrink: 0;
+    position: relative;
+}
+.grantt-chart--left__body--body__name--icon{
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: inline-block;
+    background: #ddd;
+    overflow: hidden;
+    position: relative;
+}
+.grantt-chart--left__body--body__name--title{
+    overflow: hidden;
+    flex-grow: 1;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    line-height: 20px;
+
+}
+.grantt-chart--left__body--body__name--title a{
+    text-decoration: none;
+}
+.grantt-chart--left__body--group{
+    color: #888;
+    transition: all .2s;
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 10px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.grantt-chart--left__body--deepspace{
+    width: 10px;
+    pointer-events: none;
+}
+.grantt-chart--right{width: 970px;}
+.grantt-chart--right__header,.grantt-chart--right__header2{
+    font-size: 11px;
+    align-self: flex-start;
+    z-index: 99;
+    background-color: white;
+    text-transform: uppercase;
+    display: flex;
+}
+.grantt-chart--right__headertime{
+    height: 36px;
+    font-weight: 700;
+    color: #545454;
+    padding: 0 10px;
+    line-height: 36px;
+    border-right: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    border-top: 1px solid #e4e4e4;
+}
+.grantt-chart--right__header2--subsday{
+    width: 33.3px;
+    height: 37px;
+    text-align: center;
+    margin: 0;
+    border-right: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+}
+.grantt-chart--right__body{
+    align-self: flex-start;
+    position: relative;
+    align-items: stretch;
+    text-align: center;
+    font-size: 11px;
+    border-bottom: 1px solid #e4e4e4;
+}
+.grantt-chart--right__body--col{
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 40px;
+    width: 36.1px;
+    height: 43px;
+}
+.grantt-chart--right__body--col__chart{
+    height: 30px;
+    border: 1px solid #0391d6;
+    position: absolute;
+    top: 6px;
+    cursor: pointer;
+}
+.grantt-chart--right__body--col__chart:hover{
+    opacity: 0.8;
+}
+.grantt-chart--right__body--col__chart--process{
+    height: 100%;
+}
+.grantt-chart--right__body--col__chart--img{
+
+width: 25px;
+
+height: 25px;
+
+position: absolute;
+
+top: 2px;
+
+right: -30px;
+
+border-radius: 50%;
+}
+.grantt-chart--left__body--header{
+    border-bottom: 1px solid #e4e4e4;
+    width: 660px;
+}
+.body-sticky {
+  overflow-x: auto;
+  }
+  .grantt-chart--right__header.menu-demo.sticky{
+  top: 70px;
+  }
+  .grantt-chart--right__header2.menu-demo.sticky{
+  top: 106px;
+  }
+
+  .grantt-chart--left__body--body{border-bottom: 1px solid #e4e4e4;height: 44px;}
+.menu-sticky{
+
+position: sticky;
+
+background-color: white;
+
+z-index: 999;
+
+overflow-x: hidden;
+
+top: 70px;
+}
+#left-body{
+    width: 100%;
+    overflow: auto;
+}
+#left-header{
+    position: sticky;
+    top: 108px;
+    width: 100%;
+    overflow-x: hidden;
+    z-index: 300;
+    background-color: white;
+}
