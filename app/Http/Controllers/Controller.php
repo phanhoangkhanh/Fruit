@@ -33,7 +33,17 @@ class Controller extends BaseController
 
     public function dashboard()
     {
-        return view("dashboard");
+        return view("inside.dashboard");
+    }
+
+    public function customer()
+    {
+        return view("inside.customer.main");
+    }
+
+    public function fruit()
+    {
+        return view("inside.fruit.main");
     }
 
 

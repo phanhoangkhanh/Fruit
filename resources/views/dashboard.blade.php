@@ -1,1 +1,0 @@
-chúng ta vo trong roi
