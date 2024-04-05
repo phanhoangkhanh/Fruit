@@ -23,6 +23,7 @@ class InvoiceUpdate extends Component
     public $max_volume;
     public $quantity;
     public $price;
+    public $total_cost;
 
     protected $rules = [
         'fruit_choosen' 	=> 'required',
@@ -47,6 +48,7 @@ class InvoiceUpdate extends Component
             $now = Carbon::now();
             $max_id = Invoice::max('id') + 1;
             $this->num_invoice = Carbon::parse($now)->format('ymd').$max_id;
+            $this->total_cost = 0;
         }
         
     }
@@ -75,9 +77,9 @@ class InvoiceUpdate extends Component
             $newObj = InvoiceItem::create(
                 [
                     'invoice_id'    =>  $this->invoice_id,
-                    'fruit_item_id' => $this->fruit_choosen,
+                    'fruit_item_id' =>  $this->fruit_choosen,
                     'price_at_sell' =>  $this->price,
-                    'quantity'      => $this->quantity
+                    'quantity'      =>  $this->quantity
                 ]
             );
         }else{
@@ -90,13 +92,42 @@ class InvoiceUpdate extends Component
                 ]
             );
         }
-        
+        $this->total_cost += $this->price*$this->quantity;
+        $objItem = FruitItem::find($this->fruit_choosen);
+        Invoice::find($this->invoice_id)->update(['total_cost' => $this->total_cost]);
+        $objItem->update([
+            'stock' =>  $objItem->stock - $this->quantity
+        ]);
+        $this->reset('fruit_choosen', 'fruit_name', 'quantity', 'price', 'max_volume');
+    }
+
+    public function eraseItem($id)
+    {
+        //turn back cost and quantity 
+        $obj = InvoiceItem::find($id);
+        $objFruitItem = FruitItem::find($obj->fruit_item_id);
+        $objFruitItem->update([
+            'stock' =>  $objFruitItem->stock + $obj->quantity
+        ]);
+        $this->total_cost -= $obj->price_at_sell*$obj->quantity;
+        Invoice::find($obj->invoice_id)->update(['total_cost' => $this->total_cost]);
+        InvoiceItem::find($id)->delete();
+
+    }
+
+    public function confirmInvoice()
+    {
+        $this->emit('modal', ['hide', "#invoice-modal"]);
+        $this->reset( 'customer', 'total_cost', 'invoice_id');
+        $this->emit('rerender');
     }
 
     public function render()
     {
+        $list_invoice_item = InvoiceItem::where('invoice_id', $this->invoice_id)
+                                ->with('hasInvoice','hasFruit')->get();
         $list_fruit = FruitItem::where('name', 'like', "%{$this->fruit_name}%")->get();
         $list_customer = Customer::all();
-        return view("inside.invoice.update", compact('list_customer', 'list_fruit'));
+        return view("inside.invoice.update", compact('list_customer', 'list_fruit', 'list_invoice_item'));
     }
 }

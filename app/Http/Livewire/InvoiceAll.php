@@ -14,6 +14,9 @@ class InvoiceAll extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
+    protected $listeners = [
+        'rerender' => '$refresh'
+    ];
 
     public $customer_looking;   
 
@@ -31,7 +34,7 @@ class InvoiceAll extends Component
 
     public function render()
     {
-        $list = $this->lists->paginate(5);
+        $list = $this->lists->paginate(6);
         return view("inside.invoice.all", compact('list'));
     }
 }

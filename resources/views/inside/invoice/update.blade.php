@@ -27,6 +27,9 @@
                     <div class="col-md-3">
                         NUmber Invoice: <b>{{$num_invoice}}</b>
                     </div>
+                    <div class="col-md-3">
+                        ToTal Cost: <b style="color:red">{{$total_cost}} $</b>
+                    </div>
                 </div>
 
                 <div class="form-row" style="margin-top:10px">
@@ -64,6 +67,44 @@
                         </button>
                     </div>
                 </div>
+                @if( $list_invoice_item)
+                
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Fruit Item</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Cost</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($list_invoice_item as $per)
+                            <tr>
+                                <th scope="row">{{$loop->index+1}}</th>
+                                <td>{{$per->hasFruit?->name ?? "..."}}</td>
+                                <td>{{$per->quantity}}</td>
+                                <td>{{$per->price_at_sell}}</td>
+                                <td>{{$per->price_at_sell*$per->quantity }}</td>
+                                <td>
+                                    <button class="btn btn-icon btn-sm btn-danger btn-rounded"
+                                        type="button" wire:click="eraseItem({{$per->id}})">
+                                        <i class="anticon anticon-close-circle"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                @endif
+                <button class="btn btn-block btn-tone btn-primary m-r-5" 
+                    type="button" wire:click="confirmInvoice">
+                    ConFirm
+                </button>
             </div>
         </div>
     </div>
