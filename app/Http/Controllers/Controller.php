@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use App\Models\Invoice;
+use App\Models\InvoiceItem;
+use PDF;
 
 class Controller extends BaseController
 {
@@ -49,6 +52,13 @@ class Controller extends BaseController
     public function invoice()
     {
         return view("inside.invoice.main");
+    }
+
+    public function print($id)
+    {
+        $obj = Invoice::with('hasItem', 'hasCustomer', 'hasItem.hasFruit')->find($id);
+        $pdf = PDF::loadView('inside.print.print-form',  compact('obj'));
+    	return $pdf->download('invoice-khanh.pdf');
     }
 
 

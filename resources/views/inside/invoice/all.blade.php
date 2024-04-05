@@ -50,8 +50,8 @@
                             data-toggle="modal" data-target=".bd-example-modal-sm"
                             wire:click="setDeleteID({{$per->id}})"
                             >Delete</button>
-                        <button class="btn btn-tone btn-info dropdown-item" 
-                            wire:click="">Print</button>
+                        <a class="btn btn-tone btn-info dropdown-item" 
+                            href="{{Route('print',$per->id)}}">Print</a>
                     </div>
                 </div>
                 </td>

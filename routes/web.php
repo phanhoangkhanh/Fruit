@@ -35,5 +35,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('customer', [Controller::class, 'customer'])->name('customer');
     Route::get('fruit', [Controller::class, 'fruit'])->name('fruit');
     Route::get('invoice', [Controller::class, 'invoice'])->name('invoice');
+    Route::get('print/{id}',[Controller::class, 'print'])->name('print');
 });
 
