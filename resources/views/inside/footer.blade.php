@@ -1,6 +1,6 @@
 <footer class="footer">
         <div class="footer-content">
-            <p class="m-b-0">Our SFVN Fruit is so sweet...</p>
+            <p class="m-b-0">Candidate: Phan Hoang Khanh - 0822370521</p>
             <span>
 
             </span>
