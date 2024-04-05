@@ -35,7 +35,7 @@
                 <td>{{\Carbon\Carbon::parse($per->created_at)->format('d/m/y')}}</td>
                 <td>{{$per->hasCustomer?->name ?? '..'}}</td>
                 <td>{{$per->hasUser?->name ?? '..'}}</td>
-                <td>{{number_type($per->total_cost)}}$</td>
+                <td>{{$per->total_cost}}$</td>
                 <td></td>
             </tr>
             @endforeach

@@ -20,6 +20,9 @@
                                 <option value="{{$per->id}}">{{$per->name}}</option>
                             @endforeach
                         </select>
+                        @error('customer') 
+                            <span class="form-control alert alert-danger">{{ $message }}</span> 
+                        @enderror
                     </div>
                     <div class="col-md-3">
                         NUmber Invoice: <b>{{$num_invoice}}</b>
@@ -31,16 +34,23 @@
                         <label for="inputEmail4">Fruit (type and choose)</label>
                         <input @click="open = !open" type="text" class="form-control"  
                             placeholder="Type and Choose for convinient" wire:model="fruit_name" @click="open = !open">
+                        @error('fruit_choosen') 
+                            <span class="form-control alert alert-danger">{{ $message }}</span> 
+                        @enderror
                         <select x-show="open" class="form-control" wire:model="fruit_choosen" wire:change="choosenFruit" >
                             <option value="">...</option>
                             @foreach( $list_fruit as $per)
                                 <option value="{{$per->id}}">{{$per->name}}</option>
                             @endforeach
                         </select>
+                        
                     </div>
                     <div class="form-group col-md-2">
                         <label for="inputPassword4">Max: {{$max_volume}}</label>
                         <input type="number" class="form-control" placeholder="Quantity" wire:model="quantity">
+                        @error('quantity') 
+                            <span class="form-control alert alert-danger">{{ $message }}</span> 
+                        @enderror
                     </div>
                     <div class="form-group col-md-2">
                         <label for="inputPassword4">Price</label>
@@ -48,7 +58,8 @@
                     </div>
                     <div class="form-group col-md-2">
                         <label for="inputPassword4">Adding Invoice</label><br/>
-                        <button class="btn btn-icon btn-sm btn-info btn-rounded">
+                        <button class="btn btn-icon btn-sm btn-info btn-rounded"
+                                type="button" wire:click="createInvoiceItem">
                             <i class="anticon anticon-plus-circle"></i>
                         </button>
                     </div>
