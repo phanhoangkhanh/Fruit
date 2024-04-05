@@ -46,5 +46,10 @@ class Controller extends BaseController
         return view("inside.fruit.main");
     }
 
+    public function invoice()
+    {
+        return view("inside.invoice.main");
+    }
+
 
 }

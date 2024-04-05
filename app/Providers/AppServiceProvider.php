@@ -10,6 +10,8 @@ use App\Http\Livewire\DeclareCustomer;
 use App\Http\Livewire\ListCustomer;
 use App\Http\Livewire\DeclareFruit;
 use App\Http\Livewire\ListFruitItem;
+use App\Http\Livewire\InvoiceAll;
+use App\Http\Livewire\InvoiceUpdate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +36,10 @@ class AppServiceProvider extends ServiceProvider
         // fruit
         Livewire::component("declare-fruit", DeclareFruit::class);
         Livewire::component("list-fruit-item", ListFruitItem::class);
+        // provider
+        Livewire::component("invoice-all", InvoiceAll::class);
+        Livewire::component("invoice-update-create", InvoiceUpdate::class);
+        
         
         
         

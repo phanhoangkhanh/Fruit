@@ -34,5 +34,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard',[Controller::class, 'dashboard'])->name('dashboard');
     Route::get('customer', [Controller::class, 'customer'])->name('customer');
     Route::get('fruit', [Controller::class, 'fruit'])->name('fruit');
+    Route::get('invoice', [Controller::class, 'invoice'])->name('invoice');
 });
 
