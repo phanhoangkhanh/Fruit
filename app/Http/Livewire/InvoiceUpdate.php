@@ -39,18 +39,18 @@ class InvoiceUpdate extends Component
     public function callModal($id)
     {
         $this->invoice_id = $id;
-        $this->emit('modal', ['show', "#invoice-modal"]);
-    }
-
-    public function mount()
-    {
-        if( $this->invoice_id == 0 ){
+        if($id > 0 ){
+            $obj = Invoice::find($id);
+            $this->customer = $obj->customer_id;
+            $this->total_cost = $obj->total_cost;
+            $this->num_invoice = $obj->number;
+        }elseif( $id == 0){
             $now = Carbon::now();
             $max_id = Invoice::max('id') + 1;
             $this->num_invoice = Carbon::parse($now)->format('ymd').$max_id;
             $this->total_cost = 0;
         }
-        
+        $this->emit('modal', ['show', "#invoice-modal"]);
     }
 
     public function choosenFruit()
@@ -118,7 +118,7 @@ class InvoiceUpdate extends Component
     public function confirmInvoice()
     {
         $this->emit('modal', ['hide', "#invoice-modal"]);
-        $this->reset( 'customer', 'total_cost', 'invoice_id');
+        $this->reset( 'customer', 'total_cost', 'invoice_id', 'num_invoice');
         $this->emit('rerender');
     }
 

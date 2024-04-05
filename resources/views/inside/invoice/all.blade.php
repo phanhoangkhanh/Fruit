@@ -36,7 +36,20 @@
                 <td>{{$per->hasCustomer?->name ?? '..'}}</td>
                 <td>{{$per->hasUser?->name ?? '..'}}</td>
                 <td>{{$per->total_cost}}$</td>
-                <td></td>
+                <td> 
+                <div class="btn-group dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle btn-sm btn-tone" 
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="anticon anticon-bars"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <button class="btn btn-tone btn-warning dropdown-item" 
+                            wire:click="callModal({{$per->id}})">Info & Modify</button>
+                            <button class="btn btn-tone btn-info dropdown-item" 
+                            wire:click="">Print</button>
+                    </div>
+                </div>
+                </td>
             </tr>
             @endforeach
         </tbody>
