@@ -17,7 +17,7 @@ class InvoiceAll extends Component
     protected $listeners = [
         'rerender' => '$refresh'
     ];
-
+    public $delete_id;
     public $customer_looking;   
 
     public function getListsProperty()
@@ -30,6 +30,24 @@ class InvoiceAll extends Component
     public function callModal($id)
     {
         $this->emit('emitCallModal', $id);
+    }
+
+    public function setDeleteID($id)
+    {
+        $this->delete_id = $id;
+    }
+
+    public function confirmDelete()
+    {
+        $item_list = InvoiceItem::where('invoice_id', $this->delete_id)->get();
+        foreach( $item_list as $per){
+            $per->delete();
+        }
+        Invoice::find($this->delete_id)->delete();
+        $this->emit('alert', ['alert-danger', 'Deleted Invoice']);
+        $this->emit('modal', ['hide', '#modal-delete']);
+        $this->emit('rerender');
+
     }
 
     public function render()

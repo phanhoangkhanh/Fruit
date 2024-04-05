@@ -44,7 +44,9 @@ class InvoiceUpdate extends Component
             $this->customer = $obj->customer_id;
             $this->total_cost = $obj->total_cost;
             $this->num_invoice = $obj->number;
+            $this->reset('fruit_choosen', 'fruit_name', 'price', 'max_volume', 'quantity');
         }elseif( $id == 0){
+            $this->reset('customer', 'total_cost');
             $now = Carbon::now();
             $max_id = Invoice::max('id') + 1;
             $this->num_invoice = Carbon::parse($now)->format('ymd').$max_id;
@@ -117,9 +119,17 @@ class InvoiceUpdate extends Component
 
     public function confirmInvoice()
     {
-        $this->emit('modal', ['hide', "#invoice-modal"]);
-        $this->reset( 'customer', 'total_cost', 'invoice_id', 'num_invoice');
-        $this->emit('rerender');
+        $objInvoice = Invoice::find($this->invoice_id);
+        if( $objInvoice ){
+            $objInvoice->update(['customer_id' => $this->customer]);
+            $this->emit('modal', ['hide', "#invoice-modal"]);
+            $this->reset( 'customer', 'total_cost', 'invoice_id', 'num_invoice');
+            $this->emit('rerender');
+        }else{
+            $this->reset( 'customer', 'total_cost', 'invoice_id', 'num_invoice');
+            $this->emit('modal', ['hide', "#invoice-modal"]);
+        }
+        
     }
 
     public function render()
