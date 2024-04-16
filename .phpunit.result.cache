@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Tests\\Feature\\UserTest::test_store_new_to_do":8},"times":{"Tests\\Unit\\ExampleTest::test_that_true_is_true":0.003,"Tests\\Feature\\ExampleTest::test_the_application_returns_a_successful_response":0.028,"Tests\\Feature\\UserTest::test_example":1.36,"Tests\\Feature\\UserTest::test_store_new_to_do":0.06}}

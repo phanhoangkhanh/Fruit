@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Livewire\Component;
 use Auth;
 use App\Models\Customer;
+use App\Http\Controllers\Helper;
 
 class DeclareCustomer extends Component
 {
@@ -26,6 +27,7 @@ class DeclareCustomer extends Component
 
     public function declareCus()
     {
+        dd( Helper::getKhanh(2) );
         //dd($this->name);
         $this->validate();
         Customer::create([

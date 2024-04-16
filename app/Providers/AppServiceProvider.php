@@ -12,15 +12,21 @@ use App\Http\Livewire\DeclareFruit;
 use App\Http\Livewire\ListFruitItem;
 use App\Http\Livewire\InvoiceAll;
 use App\Http\Livewire\InvoiceUpdate;
+use App\Http\Controllers\Helper;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
      */
+
     public function register(): void
     {
         //
+        $this->app->singleton(Helper::class, function (Application $app) {
+            return new Helper;
+        });
+        
     }
 
     /**
@@ -39,9 +45,5 @@ class AppServiceProvider extends ServiceProvider
         // provider
         Livewire::component("invoice-all", InvoiceAll::class);
         Livewire::component("invoice-update-create", InvoiceUpdate::class);
-        
-        
-        
-        
     }
 }
